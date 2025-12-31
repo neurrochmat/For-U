@@ -355,7 +355,7 @@ class AnimationSequence {
         const phrase = this.phrases[index];
         const el = this.scene2.dynamicPhrase;
 
-        const minSize = 2;
+        const minSize = 2.2;  // Same size as "Thank you for"
         const maxSize = 4;
         const progress = index / (this.phrases.length - 1);
         const fontSize = minSize + (maxSize - minSize) * progress;
