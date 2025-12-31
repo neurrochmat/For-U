@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Before 2025 End</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Start Popup -->
+    <div class="popup-overlay active" id="startPopup">
+        <div class="popup-content">
+            <p class="popup-text">🎵 Play with music? 🎵</p>
+            <div class="popup-buttons">
+                <button class="popup-btn primary" id="playWithMusicBtn">Yes, play music! 🎶</button>
+                <button class="popup-btn secondary" id="playWithoutMusicBtn">No, thanks</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Scene 1: Before 2025 end -->
+    <div class="scene scene-1" id="scene1">
+        <!-- Top row: Before - tell - end -->
+        <div class="top-row">
+            <span class="word handwritten" id="before">Before</span>
+            <span class="word handwritten" id="tell">tell</span>
+            <span class="word handwritten" id="end">end</span>
+        </div>
+        
+        <!-- Main year -->
+        <div class="year-row">
+            <span class="year-digit" id="digit-2">2</span>
+            <span class="year-digit" id="digit-0">0</span>
+            <span class="year-digit" id="digit-2b">2</span>
+            <span class="year-digit" id="digit-5">5</span>
+        </div>
+        
+        <!-- Bottom row: I - you - wanna -->
+        <div class="bottom-row">
+            <span class="word handwritten" id="i-word">I</span>
+            <span class="word handwritten" id="you">you</span>
+            <span class="word handwritten" id="wanna">wanna</span>
+        </div>
+    </div>
+    
+    <!-- Scene 2: Thank you for... -->
+    <div class="scene scene-2" id="scene2">
+        <div class="thank-you-container">
+            <!-- Static part: Thank you for, -->
+            <div class="static-text">
+                <span class="word handwritten" id="thank">Thank</span>
+                <span class="word handwritten" id="you2">you</span>
+                <span class="word handwritten" id="for">for</span>
+                <span class="word handwritten" id="comma">,</span>
+            </div>
+            
+            <!-- Dynamic highlight text container -->
+            <div class="highlight-container" id="highlightContainer">
+                <span class="highlight-text" id="dynamicPhrase"></span>
+            </div>
+        </div>
+    </div>
+    <!-- Scene 3: Thank you for watching -->
+    <div class="scene scene-3" id="scene3">
+        <div class="thank-watching-container">
+            <p class="thank-watching-text" id="thankWatchingText">Thank you for watching ❤️</p>
+        </div>
+    </div>
+    
+    <!-- Play Again Popup -->
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup-content">
+            <p class="popup-text">wanna play again?</p>
+            <button class="popup-btn primary" id="playAgainBtn">Yes! 💫</button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
