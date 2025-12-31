@@ -9,9 +9,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f5e6c8;
+    background: linear-gradient(135deg, #f5e6c8 0%, #f5e6c8 100%);
     font-family: 'Caveat', cursive;
     overflow: hidden;
+    transition: background 2s ease;
+}
+
+body.romantic-mode {
+    background: linear-gradient(135deg, #f5e6c8 0%, #fce4ec 50%, #f8bbd9 100%);
 }
 
 .scene {
@@ -584,30 +589,277 @@ body {
         padding: 0.6rem 1rem;
         font-size: 1rem;
     }
+
+    .popup-text {
+        font-size: 2rem;
+    }
+
+    .popup-btn {
+        font-size: 1.4rem;
+        padding: 0.8rem 2rem;
+    }
+
+    .popup-btn.secondary {
+        font-size: 1.1rem;
+    }
+
+    .thank-watching-text {
+        font-size: 2.5rem;
+    }
+
+    .static-text {
+        gap: 0.5rem;
+    }
+
+    .highlight-container {
+        min-height: 3rem;
+    }
 }
 
-/* Extra small screens */
+/* Extra small screens - phones */
 @media (max-width: 480px) {
     .handwritten {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
     }
 
     .year-digit {
-        font-size: clamp(4rem, 18vw, 6rem);
+        font-size: clamp(3rem, 20vw, 5rem);
+    }
+
+    .top-row,
+    .bottom-row {
+        width: 90vw;
+        max-width: none;
+        gap: 0.3rem;
+    }
+
+    .popup-text {
+        font-size: 1.6rem;
+        padding: 0 1rem;
+    }
+
+    .popup-btn {
+        font-size: 1.2rem;
+        padding: 0.7rem 1.5rem;
+    }
+
+    .popup-btn.secondary {
+        font-size: 1rem;
+        padding: 0.5rem 1.2rem;
+    }
+
+    .popup-buttons {
+        gap: 0.8rem;
+    }
+
+    .thank-watching-text {
+        font-size: 2rem;
+        padding: 0 1rem;
+    }
+
+    .static-text {
+        gap: 0.4rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .highlight-text {
+        font-size: 1.8rem !important;
+    }
+
+    .heart {
+        font-size: 1rem !important;
     }
 }
 
-/* Subtle background animation */
-body::before {
-    content: '';
+/* Very small screens - small phones */
+@media (max-width: 360px) {
+    .handwritten {
+        font-size: 1rem;
+    }
+
+    .year-digit {
+        font-size: clamp(2.5rem, 18vw, 4rem);
+    }
+
+    .popup-text {
+        font-size: 1.4rem;
+    }
+
+    .popup-btn {
+        font-size: 1rem;
+        padding: 0.6rem 1.2rem;
+    }
+
+    .thank-watching-text {
+        font-size: 1.6rem;
+    }
+}
+
+/* Landscape mode on mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .scene {
+        padding: 0.5rem;
+    }
+
+    .year-digit {
+        font-size: clamp(2rem, 15vh, 4rem);
+    }
+
+    .handwritten {
+        font-size: 1rem;
+    }
+
+    .top-row {
+        margin-bottom: -0.5rem;
+    }
+
+    .bottom-row {
+        margin-top: -0.5rem;
+    }
+
+    .popup-content {
+        transform: scale(0.9);
+    }
+
+    .thank-watching-text {
+        font-size: 1.8rem;
+    }
+}
+
+/* Tablets */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .handwritten {
+        font-size: 2rem;
+    }
+
+    .year-digit {
+        font-size: clamp(6rem, 15vw, 10rem);
+    }
+
+    .top-row,
+    .bottom-row {
+        max-width: 550px;
+    }
+
+    .popup-text {
+        font-size: 2.8rem;
+    }
+
+    .thank-watching-text {
+        font-size: 3rem;
+    }
+}
+
+/* Large screens - desktops */
+@media (min-width: 1200px) {
+    .handwritten {
+        font-size: 2.8rem;
+    }
+
+    .year-digit {
+        font-size: clamp(10rem, 15vw, 14rem);
+    }
+
+    .top-row,
+    .bottom-row {
+        max-width: 700px;
+    }
+
+    .popup-text {
+        font-size: 4rem;
+    }
+
+    .thank-watching-text {
+        font-size: 4.5rem;
+    }
+
+    .highlight-text {
+        font-size: 3rem;
+    }
+}
+
+/* Floating Hearts */
+.hearts-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background:
-        radial-gradient(circle at 20% 80%, rgba(181, 35, 47, 0.03) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(181, 35, 47, 0.03) 0%, transparent 50%);
     pointer-events: none;
-    z-index: -1;
+    z-index: 5;
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+    font-size: 1.5rem;
+    opacity: 0;
+    animation: floatHeart 6s ease-in-out infinite;
+}
+
+@keyframes floatHeart {
+    0% {
+        opacity: 0;
+        transform: translateY(100vh) scale(0.5) rotate(0deg);
+    }
+
+    10% {
+        opacity: 0.8;
+    }
+
+    90% {
+        opacity: 0.8;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-20vh) scale(1.2) rotate(20deg);
+    }
+}
+
+/* Sparkles */
+.sparkles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 6;
+    overflow: hidden;
+}
+
+.sparkle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle, #fff 0%, #ffd700 50%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0;
+    animation: sparkleAnim 2s ease-in-out infinite;
+}
+
+@keyframes sparkleAnim {
+
+    0%,
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Sparkle glow effect */
+.sparkle::before {
+    content: '✨';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1rem;
 }

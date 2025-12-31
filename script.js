@@ -130,11 +130,72 @@ class AnimationSequence {
             this.bgMusic.play().catch(e => console.log('Music play failed:', e));
         }
 
+        // Start romantic visual effects
+        this.startRomanticEffects();
+
         // Start animation after popup fades
         setTimeout(() => {
             this.scene1.container.classList.add('active');
             this.startSequence();
         }, 500);
+    }
+
+    startRomanticEffects() {
+        // Add gradient background after a delay
+        setTimeout(() => {
+            document.body.classList.add('romantic-mode');
+        }, 3000); // Starts during Scene 2
+
+        // Start floating hearts
+        this.heartsInterval = setInterval(() => this.createHeart(), 800);
+
+        // Start sparkles
+        this.sparklesInterval = setInterval(() => this.createSparkle(), 300);
+    }
+
+    createHeart() {
+        const container = document.getElementById('heartsContainer');
+        if (!container) return;
+
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.innerHTML = ['❤️', '💕', '💗', '💖', '💓'][Math.floor(Math.random() * 5)];
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+        heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
+        heart.style.animationDelay = Math.random() * 2 + 's';
+
+        container.appendChild(heart);
+
+        // Remove after animation
+        setTimeout(() => heart.remove(), 10000);
+    }
+
+    createSparkle() {
+        const container = document.getElementById('sparklesContainer');
+        if (!container) return;
+
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        sparkle.style.left = Math.random() * 100 + 'vw';
+        sparkle.style.top = Math.random() * 100 + 'vh';
+        sparkle.style.animationDuration = (Math.random() * 1 + 1.5) + 's';
+
+        container.appendChild(sparkle);
+
+        // Remove after animation
+        setTimeout(() => sparkle.remove(), 3000);
+    }
+
+    stopRomanticEffects() {
+        if (this.heartsInterval) clearInterval(this.heartsInterval);
+        if (this.sparklesInterval) clearInterval(this.sparklesInterval);
+
+        // Clear existing hearts and sparkles
+        const heartsContainer = document.getElementById('heartsContainer');
+        const sparklesContainer = document.getElementById('sparklesContainer');
+        if (heartsContainer) heartsContainer.innerHTML = '';
+        if (sparklesContainer) sparklesContainer.innerHTML = '';
     }
 
     resetAll() {
@@ -166,6 +227,10 @@ class AnimationSequence {
         this.scene2.container.classList.remove('active', 'fade-out');
         this.scene3.container.classList.remove('active', 'fade-out');
         this.scene3.thankWatchingText.classList.remove('visible');
+
+        // Reset romantic effects
+        this.stopRomanticEffects();
+        document.body.classList.remove('romantic-mode');
 
         this.popup.overlay.classList.remove('active');
 
@@ -339,6 +404,9 @@ class AnimationSequence {
             this.bgMusic.currentTime = 0;
             this.bgMusic.play().catch(e => console.log('Music play failed:', e));
         }
+
+        // Restart romantic effects
+        this.startRomanticEffects();
 
         setTimeout(() => this.startSequence(), 300);
     }
