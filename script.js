@@ -43,6 +43,13 @@ class AnimationSequence {
             thankWatchingText: document.getElementById('thankWatchingText')
         };
 
+        // Scene 4 elements
+        this.scene4 = {
+            container: document.getElementById('scene4'),
+            photoFrame: document.getElementById('photoFrame'),
+            foreverText: document.getElementById('foreverText')
+        };
+
         // End popup elements
         this.popup = {
             overlay: document.getElementById('popupOverlay'),
@@ -85,7 +92,7 @@ class AnimationSequence {
     }
 
     calculateProgressiveDurations(count, totalTime) {
-        const minDuration = 500;  // Increased from 250 for better readability
+        const minDuration = 550;  // Increased from 250 for better readability
         const maxDuration = 1000;
 
         const durations = [];
@@ -227,6 +234,9 @@ class AnimationSequence {
         this.scene2.container.classList.remove('active', 'fade-out');
         this.scene3.container.classList.remove('active', 'fade-out');
         this.scene3.thankWatchingText.classList.remove('visible');
+        this.scene4.container.classList.remove('active', 'fade-out');
+        this.scene4.photoFrame.classList.remove('visible');
+        this.scene4.foreverText.classList.remove('visible');
 
         // Reset romantic effects
         this.stopRomanticEffects();
@@ -273,6 +283,8 @@ class AnimationSequence {
         await this.playScene2();
         await this.transitionToScene3();
         await this.playScene3();
+        await this.transitionToScene4();
+        await this.playScene4();
         await this.showPopup();
 
         this.isPlaying = false;
@@ -381,8 +393,28 @@ class AnimationSequence {
         await this.wait(2000); // Display for 2 seconds
     }
 
-    async showPopup() {
+    async transitionToScene4() {
         this.scene3.container.classList.add('fade-out');
+        await this.wait(400);
+        this.scene3.container.classList.remove('active');
+        this.scene4.container.classList.add('active');
+    }
+
+    async playScene4() {
+        // Show photo with animation
+        await this.wait(300);
+        this.scene4.photoFrame.classList.add('visible');
+
+        // Show "Forever yours" after photo appears
+        await this.wait(800);
+        this.scene4.foreverText.classList.add('visible');
+
+        // Display for 3 seconds
+        await this.wait(3000);
+    }
+
+    async showPopup() {
+        this.scene4.container.classList.add('fade-out');
         await this.wait(500);
         this.popup.overlay.classList.add('active');
         // Music continues playing
